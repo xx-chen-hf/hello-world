@@ -1,0 +1,19 @@
+#use function point in c struct
+typedef struct _SimClass
+{
+    int a;
+    void(*setA)(struct _SimClass*const, int);
+}SimClass;
+ 
+static void _setA(SimClass* const this, int a)
+{
+    this->a=a;
+}
+ 
+int main()
+{
+    SimClass object={.setA=_setA};
+    object.setA(&object, 1);
+    printf("%d",object.a);
+    return 0;
+}
